@@ -1,0 +1,75 @@
+<div *ngIf="this.isEmpty" align="center">
+    <b>EMPTY CAR!</b>
+  <br>
+    <p>
+      Please select some products to buy
+    </p>
+</div>
+
+<!-- Usando container para usar *ngIf y *ngFor-->
+<ng-container *ngIf="!this.isEmpty">
+
+  <h2 class="title_form">SELECTED PRODUCTS : </h2>
+
+<div *ngFor="let itemsCar of cart">
+
+  <div class="b-project" *ngIf="cart">
+    <div class="b-project__title-container">
+      <h3 class="b-project__title">{{ itemsCar.name }}</h3>
+    </div>
+    <div class="b-project__description">
+      {{ itemsCar.descript }}
+    </div>
+    <div class="b-project__description">
+      <b>{{ itemsCar.price }} USD</b>
+    </div>
+    <div class="b-project__description">
+
+    </div>
+    <div >
+      <a (click)="onDeleteProject(itemsCar)">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="formulario_cart">
+
+  <h2 class="title_form">SHIPPING: </h2>
+
+  <form [formGroup] = "form" (ngSubmit)="onPlaceOrder($event)">
+    <div class="form-group-fields" formGroupName="user">
+
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" formControlName="name" class="form-control" [(ngModel)]="dataUser.name"/>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input id="email" formControlName="email" class="form-control" [(ngModel)]="dataUser.email"/>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input id="address" formControlName="address" class="form-control" [(ngModel)]="dataUser.address"/>
+      </div>
+
+     <button [disabled]="form.invalid" class="btn btn-primary"> Place order</button>
+
+      <a href="/item-list" class="btn">Cancel</a>
+    </div>
+
+    <!--&lt;!&ndash; Pipe por defecto de Angular. La etiqueta  pre es preformatear algo&ndash;&gt;-->
+    <!--<pre>-->
+    <!--{{ form.value | json}}-->
+    <!--</pre>-->
+  </form>
+
+</div>
+
+</ng-container>
+
