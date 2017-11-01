@@ -14,7 +14,7 @@ export class UserService extends HttpService {
 
   public getAll(puserName:string): Observable<Array<Users>> {
     const projects: Array<Users> = [];
-    const url = `${this.apiBaseURL}/users/search?username=`+puserName;
+    const url = `${this.apiBaseURL}/ShoppingCart/users/search?username=`+puserName;
     console.log("Token "+this._authService.getToken());
     return this.get(url, this._authService.getToken());
   }

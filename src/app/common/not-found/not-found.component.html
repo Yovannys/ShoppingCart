@@ -7,9 +7,14 @@
 
 
 <h4>
-  <a class="btn-link"
+
+  <a class="btn-link" *ngIf="dataUser!=null"
      routerLink="/item-list"
      title="Cursos">Check Products
   </a>
 
+  <a class="btn-link" *ngIf="dataUser==null"
+     routerLink="/login"
+     title="Cursos">Please log in first.
+  </a>
 </h4>

@@ -12,11 +12,6 @@ export class CartListService extends HttpService{
     super(_http);
   }
 
-  public getSingle(id: number): Observable<Item> {
-    //const url = `${this.apiBaseURL}/carts/${id}`;
-    //return this.get(url, this._authService.user.api_token);
-    return null;
-  }
 
 
 }

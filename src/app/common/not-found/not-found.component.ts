@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-not-found',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotFoundComponent implements OnInit {
 
-  constructor() { }
+  dataUser;
+
+  constructor(  public _authService: AuthenticationService) { }
 
   ngOnInit() {
+
+    this.dataUser = this._authService.user;
   }
 
 }
