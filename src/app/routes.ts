@@ -8,6 +8,7 @@ import {NewUserComponent} from "./public/user/user-list/new-user/new-user.compon
 import {UserListComponent} from "./public/user/user-list/user-list.component";
 import {ItemListComponent} from "./auth/item-list/item-list.component";
 import {CarListComponent} from "./auth/car-list/car-list.component";
+import {PaymentComponent} from "./auth/payment/payment.component";
 
 
 /*
@@ -45,6 +46,10 @@ export const routes: Routes = [
 
   {
     path: 'car-list/:id', component: CarListComponent, canActivate: [ AuthGuard ]
+  },
+
+  {
+    path: 'payment', component: PaymentComponent, canActivate: [ AuthGuard ]
   },
 
 

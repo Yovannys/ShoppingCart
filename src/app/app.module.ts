@@ -26,6 +26,7 @@ import { SortingComponent } from './modules/shared-components/sorting/sorting.co
 import { LoaderComponent } from './modules/shared-components/loader/loader.component';
 import {ItemService} from "./auth/item-list/service/item.service";
 import {CartListService} from "./auth/car-list/service/cart-list.service";
+import { PaymentComponent } from './auth/payment/payment.component';
 
 
 
@@ -45,6 +46,7 @@ import {CartListService} from "./auth/car-list/service/cart-list.service";
     CarListComponent,
     SortingComponent,
     LoaderComponent,
+    PaymentComponent,
 
   ],
   imports: [

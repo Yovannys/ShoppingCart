@@ -25,15 +25,15 @@ export class CarListComponent implements OnInit {
 
   dataUser;
 
-  form = this._formBuilder.group( {
-    user: this._formBuilder.group( {
-
-      name : ['',Validators.required ],
-      address : ['',Validators.required ],
-      email : ['',[Validators.required, Validators.email] ],
-
-    } )
-  });
+  // form = this._formBuilder.group( {
+  //   user: this._formBuilder.group( {
+  //
+  //     name : ['',Validators.required ],
+  //     address : ['',Validators.required ],
+  //     email : ['',[Validators.required, Validators.email] ],
+  //
+  //   } )
+  // });
 
   constructor(private  _router: Router,
               private _formBuilder: FormBuilder,
@@ -58,6 +58,7 @@ export class CarListComponent implements OnInit {
      this.cart = this._locker.retrieve('cart');
      //Delete repeated
      this.cart = Array.from(new Set(this.cart));
+
 
      if (this.cart.length <= 0){
        this.isEmpty = true;
@@ -84,7 +85,7 @@ export class CarListComponent implements OnInit {
     for (var j = 0; j < this.cart.length; j++){
       if (this.cart[j]!=null){
         let data = this.onCallItem(this.cart[j]);
-      }
+       }
     }
   }
 
@@ -109,9 +110,7 @@ export class CarListComponent implements OnInit {
     );
   }
 
-  onPlaceOrder(event: Event){
-    //para detener el submit
-    event.preventDefault();
+  onPlaceOrder(){
 
     //Putting the items
     this.onPutInCar();
@@ -119,8 +118,8 @@ export class CarListComponent implements OnInit {
     //Putting the items
     this.onPutInShipping();
 
-    alert("Your shipping was place sucessfully")
-    this._router.navigate(['item-list']);
+    // alert("Your shipping was place sucessfully")
+    // this._router.navigate(['item-list']);
 
   }
 

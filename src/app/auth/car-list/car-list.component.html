@@ -1,9 +1,9 @@
 <div *ngIf="this.isEmpty" align="center">
-    <b>EMPTY CAR!</b>
+  <b>EMPTY CAR!</b>
   <br>
-    <p>
-      Please select some products to buy
-    </p>
+  <p>
+    Please select some products to buy
+  </p>
 </div>
 
 <!-- Usando container para usar *ngIf y *ngFor-->
@@ -11,65 +11,72 @@
 
   <h2 class="title_form">SELECTED PRODUCTS : </h2>
 
-<div *ngFor="let itemsCar of cart">
+  <div *ngFor="let itemsCar of cart">
 
-  <div class="b-project" *ngIf="cart">
-    <div class="b-project__title-container">
-      <h3 class="b-project__title">{{ itemsCar.name }}</h3>
+    <div class="b-project" *ngIf="cart">
+      <div class="b-project__title-container">
+        <h3 class="b-project__title">{{ itemsCar.name }}</h3>
+      </div>
+      <div class="b-project__description">
+        {{ itemsCar.descript }}
+      </div>
+      <div class="b-project__description">
+        <b>{{ itemsCar.price }} USD</b>
+      </div>
+      <div >
+        <a (click)="onDeleteProject(itemsCar)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </a>
+      </div>
     </div>
-    <div class="b-project__description">
-      {{ itemsCar.descript }}
-    </div>
-    <div class="b-project__description">
-      <b>{{ itemsCar.price }} USD</b>
-    </div>
-    <div class="b-project__description">
 
-    </div>
-    <div >
-      <a (click)="onDeleteProject(itemsCar)">
-        <i class="fa fa-trash" aria-hidden="true"></i>
-      </a>
-    </div>
   </div>
 
-</div>
 
+  <div class="formulario_cart">
 
-<div class="formulario_cart">
+    <h2 class="title_form">NOTIFY BY EMAIL: </h2>
 
-  <h2 class="title_form">SHIPPING: </h2>
-
-  <form [formGroup] = "form" (ngSubmit)="onPlaceOrder($event)">
-    <div class="form-group-fields" formGroupName="user">
-
-      <div class="form-group">
-        <label for="name">Name:</label>
-        <input id="name" formControlName="name" class="form-control" [(ngModel)]="dataUser.name"/>
+    <!--user data -->
+    <div class="b-project" *ngIf="cart">
+      <div class="b-project__description">
+        <h5> <b> Name:  </b> {{ dataUser.name }} </h5>
+      </div>
+      <div class="b-project__description">
+      <h5> <b> Email: </b> {{ dataUser.email }} </h5>
       </div>
 
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input id="email" formControlName="email" class="form-control" [(ngModel)]="dataUser.email"/>
-      </div>
-
-      <div class="form-group">
-        <label for="address">Address:</label>
-        <input id="address" formControlName="address" class="form-control" [(ngModel)]="dataUser.address"/>
-      </div>
-
-     <button [disabled]="form.invalid" class="btn btn-primary"> Place order</button>
-
-      <a href="/item-list" class="btn">Cancel</a>
     </div>
+    <!-- end -->
 
-    <!--&lt;!&ndash; Pipe por defecto de Angular. La etiqueta  pre es preformatear algo&ndash;&gt;-->
-    <!--<pre>-->
-    <!--{{ form.value | json}}-->
-    <!--</pre>-->
-  </form>
+    <table>
+      <tr>
+        <td><!-- Paypal-->
 
-</div>
+          <form #form class="form-inline" name="_xclick" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+
+            <!-- Identify your business so that you can collect the payments. -->
+            <input type="hidden" name="business" value="juanc0344@gmail.com">
+
+            <!-- Specify a Buy Now button. -->
+            <input type="hidden" name="cmd" value="_xclick">
+
+            <!-- Specify details about the item that buyers will purchase. -->
+            <input type="hidden" name="amount" value="{{cart[0].price}}">
+            <input type="hidden" name="item_name" value="{{cart[0].name}}">
+
+            <input type="hidden" name="currency_code" value="USD">
+
+            <button class="btn btn-primary" type="button" (click)="form.submit();onPlaceOrder()"> Place order</button>
+          </form>
+
+          <!-- paypal-->
+        </td>
+        <td></td>
+        <td><a href="/item-list" class="btn">Cancel</a></td>
+      </tr>
+    </table>
+
+  </div>
 
 </ng-container>
-
